@@ -13,24 +13,11 @@ export default function Quiz() {
 
   const handleAnswerSelect = useCallback(
     function handleAnswerSelect(selectedAnswer) {
-      setAnswerState("answered");
       setUserAnswers((prevAnswers) => {
         return [...prevAnswers, selectedAnswer];
       });
-
-      setTimeout(() => {
-        if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
-          setAnswerState("correct");
-        } else {
-          setAnswerState("wrong");
-        }
-
-        setTimeout(() => {
-          setAnswerState(""); // Reset the answer state
-        }, 2000);
-      }, 1000);
     },
-    [activeQuestionIndex]
+    []
   );
 
   const handleSkipAnswer = useCallback(
@@ -51,12 +38,9 @@ export default function Quiz() {
     <div id="quiz">
       <Question
         key={activeQuestionIndex}
-        questionText={QUESTIONS[activeQuestionIndex].text}
-        answers={QUESTIONS[activeQuestionIndex].answers}
+        index={activeQuestionIndex}
         onSelectAnswer={handleAnswerSelect}
         handleSkipAnswer={handleSkipAnswer}
-        selectedAnswer={userAnswers[userAnswers.length - 1]}
-        answerSate={answerSate}
       />
     </div>
   );
