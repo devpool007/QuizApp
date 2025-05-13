@@ -30,6 +30,7 @@ return ( <ul id="answers">
           <button
             onClick={() => handleAnswerSelect(answer)}
             className={cssClass}
+            disabled={answerSate !== "" && answerSate !== "answered"}
           >
             {answer}
           </button>
